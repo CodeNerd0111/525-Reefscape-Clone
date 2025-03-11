@@ -8,7 +8,7 @@ import edu.wpi.first.math.util.Units;
 
 public class GyroIONavX implements GyroIO
 {
-    private final AHRS _gyro = new AHRS(NavXComType.kUSB1);
+    private final AHRS _gyro = new AHRS(NavXComType.kMXP_SPI);
 
     public GyroIONavX()
     {
