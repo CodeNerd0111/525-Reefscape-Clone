@@ -1,4 +1,4 @@
-package frc.robot.subsystems.funnel;
+/*package frc.robot.subsystems.funnel;
 
 import org.littletonrobotics.junction.Logger;
 
@@ -64,3 +64,4 @@ public class Funnel extends SubsystemBase
         return _isDropped;
     }
 }
+*/

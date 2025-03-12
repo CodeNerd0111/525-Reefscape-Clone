@@ -1,4 +1,4 @@
-package frc.robot.subsystems.funnel;
+/*package frc.robot.subsystems.funnel;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -28,3 +28,4 @@ public class FunnelIOHardware implements FunnelIO
         _funnelSolenoid.set(ControlMode.PercentOutput, volts / Constants.General.MOTOR_VOLTAGE);
     }
 }
+*/

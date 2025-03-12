@@ -1,4 +1,4 @@
-package frc.robot.subsystems.elevator;
+/*package frc.robot.subsystems.elevator;
 
 import java.util.function.DoubleSupplier;
 
@@ -64,3 +64,4 @@ public class ElevatorIOHardware implements ElevatorIO
         _leaderSparkFlex.setVoltage(volts);
     }
 }
+*/

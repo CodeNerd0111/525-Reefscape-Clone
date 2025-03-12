@@ -52,19 +52,14 @@ public final class Constants
 
     public static class CAN
     {
-        public static final int FL_DRIVE          = 9;
-        public static final int FR_DRIVE          = 7;
-        public static final int BL_DRIVE          = 10;
-        public static final int BR_DRIVE          = 5;
-        public static final int FL_TURN           = 3;
-        public static final int FR_TURN           = 6;
-        public static final int BL_TURN           = 4;
-        public static final int BR_TURN           = 2;
-        public static final int LEAD_ELEVATOR     = 19;
-        public static final int FOLLOWER_ELEVATOR = 20;
-        public static final int MANIPULATOR_LEFT  = 21;
-        public static final int MANIPULATOR_RIGHT = 22;
-        public static final int FUNNEL_SOLENOID   = 23;
+        public static final int FL_DRIVE = 9;
+        public static final int FR_DRIVE = 7;
+        public static final int BL_DRIVE = 10;
+        public static final int BR_DRIVE = 5;
+        public static final int FL_TURN  = 3;
+        public static final int FR_TURN  = 6;
+        public static final int BL_TURN  = 4;
+        public static final int BR_TURN  = 2;
     }
 
     public static class Controls
