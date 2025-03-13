@@ -86,15 +86,15 @@ public final class Constants
         public static final double          DRIVE_BASE_RADIUS             = Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
         public static final Translation2d[] MODULE_TRANSLATIONS           = new Translation2d[] { new Translation2d(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0),
                 new Translation2d(-TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(-TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0) };
-        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRadians(0.944 + Math.PI / 4); // Raw reading + 1/8 for the 45 degree offset
-        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRadians(-2.942 + 3 * Math.PI / 4); // Need to adapt for our hardware
-        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRadians(1.12 - Math.PI / 4);
-        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRadians(-1.150 - 3 * Math.PI / 4);
+        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRotations(-0.118408);
+        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRotations(.211182); // Need to adapt for our hardware
+        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRotations(-0.174561);
+        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.163818);
         public static final int             DRIVE_MOTOR_CURRENT_LIMIT     = 120;
         public static final double          WHEEL_RADIUS                  = Units.inchesToMeters(2);
         public static final double          DRIVE_MOTOR_REDUCTION         = 5.67;
         public static final boolean         DRIVE_INVERTED                = false;
-        public static final DCMotor         DRIVE_GEARBOX                 = DCMotor.getKrakenX60(1);
+        public static final DCMotor         DRIVE_GEARBOX                 = DCMotor.getNEO(1);
         public static final double          DRIVE_KP                      = 0.05;
         public static final double          DRIVE_KD                      = 0.0;
         public static final double          DRIVE_KS                      = 0.0;
@@ -107,7 +107,7 @@ public final class Constants
         public static final int             TURN_MOTOR_CURRENT_LIMIT      = 80;
         public static final double          TURN_MOTOR_REDUCTION          = 12.1;
         public static final DCMotor         TURN_GEARBOX                  = DCMotor.getNEO(1);
-        public static final double          TURN_KP                       = 3.0;
+        public static final double          TURN_KP                       = 1.2;
         public static final double          TURN_KD                       = 0.0;
         public static final double          TURN_SIM_KP                   = 8.0;
         public static final double          TURN_SIM_KD                   = 0.0;

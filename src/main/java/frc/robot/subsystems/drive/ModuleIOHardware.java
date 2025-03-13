@@ -71,12 +71,14 @@ public class ModuleIOHardware implements ModuleIO
         turnConfig.signals.primaryEncoderPositionAlwaysOn(true).primaryEncoderPositionPeriodMs((int)(1000.0 / Constants.Drive.ODOMETRY_FREQUENCY)).primaryEncoderVelocityAlwaysOn(true).primaryEncoderVelocityPeriodMs(20)
                 .appliedOutputPeriodMs(20).busVoltagePeriodMs(20).outputCurrentPeriodMs(20);
 
-        driveConfig.inverted(Constants.Drive.TURN_INVERTED).idleMode(IdleMode.kBrake).smartCurrentLimit(Constants.Drive.TURN_MOTOR_CURRENT_LIMIT).voltageCompensation(Constants.General.MOTOR_VOLTAGE);
+        driveConfig.inverted(false).idleMode(IdleMode.kBrake).smartCurrentLimit(Constants.Drive.TURN_MOTOR_CURRENT_LIMIT).voltageCompensation(Constants.General.MOTOR_VOLTAGE);
 
         driveConfig.encoder.uvwMeasurementPeriod(10).quadratureMeasurementPeriod(10).uvwAverageDepth(2).quadratureAverageDepth(2);
         driveConfig.signals.primaryEncoderPositionAlwaysOn(true).primaryEncoderPositionPeriodMs((int)(1000.0 / Constants.Drive.ODOMETRY_FREQUENCY)).primaryEncoderVelocityAlwaysOn(true).primaryEncoderVelocityPeriodMs(20)
                 .appliedOutputPeriodMs(20).busVoltagePeriodMs(20).outputCurrentPeriodMs(20);
 
+        _turnREncoder  = _turnMotor.getEncoder();
+        _driveREncoder = _driveMotor.getEncoder();
         _turnREncoder.setPosition(0.0);
         _turnMotor.configure(turnConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
         _turnAbsoultePosition = _absoulteTurnEncoder.getAbsolutePosition();
@@ -90,7 +92,7 @@ public class ModuleIOHardware implements ModuleIO
         BaseStatusSignal.refreshAll(_turnAbsoultePosition);
         inputs.driveAppliedVolts      = _driveMotor.getAppliedOutput() * _driveMotor.getBusVoltage();
         inputs.driveCurrentAmps       = _driveMotor.getOutputCurrent();
-        inputs.drivePositionRad       = _driveREncoder.getPosition() * (2 * Math.PI);
+        inputs.drivePositionRad       = Units.rotationsToRadians(_driveREncoder.getPosition() / Constants.Drive.DRIVE_MOTOR_REDUCTION);
         inputs.driveVelocityRadPerSec = Units.rotationsPerMinuteToRadiansPerSecond(_driveREncoder.getVelocity()) / Constants.Drive.TURN_MOTOR_REDUCTION;
 
         inputs.turnAbsolutePosition  = Rotation2d.fromRotations((_turnAbsoultePosition.getValueAsDouble())).minus(_potOffset);

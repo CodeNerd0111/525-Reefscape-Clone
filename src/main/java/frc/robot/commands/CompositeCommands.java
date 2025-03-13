@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.drive.Drive;
-//import frc.robot.subsystems.elevator.Elevator;
-//import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
-//import frc.robot.subsystems.manipulator.Manipulator;
+// import frc.robot.subsystems.elevator.Elevator;
+// import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
+// import frc.robot.subsystems.manipulator.Manipulator;
 
 public class CompositeCommands
 {
@@ -32,8 +32,11 @@ public class CompositeCommands
             Rotation2d linearDirection = new Rotation2d(xSupplier.getAsDouble(), ySupplier.getAsDouble());
             double     omega           = MathUtil.applyDeadband(omegaSupplier.getAsDouble(), Constants.Controls.JOYSTICK_DEADBAND);
             double     clamp           = 1.0;
-            //double     clamp           = MathUtil
-                    //.clamp((Constants.Drive.SPEED_ELEVATOR_M * Elevator.getInstance().getExtension() + Constants.Drive.SPEED_ELEVATOR_B), Constants.Drive.MIN_SPEED_ELEVATOR_MULTIPLIER, Constants.Drive.MAX_SPEED_ELEVATOR_MULTIPLIER);
+            // double clamp = MathUtil
+            // .clamp((Constants.Drive.SPEED_ELEVATOR_M *
+            // Elevator.getInstance().getExtension() + Constants.Drive.SPEED_ELEVATOR_B),
+            // Constants.Drive.MIN_SPEED_ELEVATOR_MULTIPLIER,
+            // Constants.Drive.MAX_SPEED_ELEVATOR_MULTIPLIER);
 
             // Square values
             linearMagnitude = Math.pow(linearMagnitude, translateExponent);
@@ -60,26 +63,26 @@ public class CompositeCommands
         }, Drive.getInstance());
     }
 
-    /*public static Command intake()
-    {
-        return Commands.repeatingSequence(ManipulatorCommands.intake()).until(() -> Manipulator.getInstance().hasCoral()).unless(() -> Manipulator.getInstance().hasCoral());
-    }
+    /*
+     * public static Command intake() { return
+     * Commands.repeatingSequence(ManipulatorCommands.intake()).until(() ->
+     * Manipulator.getInstance().hasCoral()).unless(() ->
+     * Manipulator.getInstance().hasCoral()); } public static Command fancyIntake()
+     * { return Commands.repeatingSequence(ManipulatorCommands.intake()).until(() ->
+     * Manipulator.getInstance().hasCoral()).andThen(ManipulatorCommands.index()).
+     * unless(() -> Manipulator.getInstance().hasCoral()); } public static Command
+     * output() { return Commands.sequence(ManipulatorCommands.output(),
+     * Commands.waitSeconds(Constants.Elevator.WAIT_TIME),
+     * ElevatorCommands.setHeight(ElevatorHeight.Stow)); }
+     */
 
-    public static Command fancyIntake()
+    /*
+     * public static Command setHeight(ElevatorHeight height) { return
+     * Commands.sequence(ElevatorCommands.setHeight(height), Commands.waitUntil(()
+     * -> Elevator.getInstance().atSetpoint())); }
+     */
+    public static Command placeholder()
     {
-        return Commands.repeatingSequence(ManipulatorCommands.intake()).until(() -> Manipulator.getInstance().hasCoral()).andThen(ManipulatorCommands.index()).unless(() -> Manipulator.getInstance().hasCoral());
-    }
-
-    public static Command output()
-    {
-        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(Constants.Elevator.WAIT_TIME), ElevatorCommands.setHeight(ElevatorHeight.Stow));
-    }*/
-
-    /*public static Command setHeight(ElevatorHeight height)
-    {
-        return Commands.sequence(ElevatorCommands.setHeight(height), Commands.waitUntil(() -> Elevator.getInstance().atSetpoint()));
-    }*/
-    public static Command placeholder(){
-        return null;
+        return Commands.sequence(null);
     }
 }

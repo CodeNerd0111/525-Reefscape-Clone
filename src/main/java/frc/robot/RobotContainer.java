@@ -11,12 +11,12 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.CompositeCommands;
 import frc.robot.commands.DriveCommands;
-//import frc.robot.commands.ElevatorCommands;
-//import frc.robot.commands.FunnelCommands;
-//import frc.robot.commands.ManipulatorCommands;
+// import frc.robot.commands.ElevatorCommands;
+// import frc.robot.commands.FunnelCommands;
+// import frc.robot.commands.ManipulatorCommands;
 import frc.robot.subsystems.dashboard.Dashboard;
 import frc.robot.subsystems.drive.Drive;
-//import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
+// import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
 import frc.robot.util.Elastic;
 
 public class RobotContainer
@@ -35,7 +35,7 @@ public class RobotContainer
     {
         DriverStation.silenceJoystickConnectionWarning(true);
 
-        //Dashboard.getInstance();
+        // Dashboard.getInstance();
 
         // Configure the button bindings
         configureButtonBindings();
@@ -47,16 +47,18 @@ public class RobotContainer
     {
         Drive.getInstance().setDefaultCommand(DriveCommands.joystickDrive(() -> -_controller.getLeftY(), () -> -_controller.getLeftX(), () -> -_controller.getRightX(), () -> false));
         _controller.a().onTrue(DriveCommands.setOdometer(new Pose2d(Units.inchesToMeters(297.5), Units.inchesToMeters(158.5), Rotation2d.fromDegrees(0))));
-/* 
-        _controller.back().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
-        _controller.povUp().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
-        _controller.povRight().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
-        _controller.povDown().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
-        _controller.povLeft().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
-
-        _controller.leftStick().onTrue(ManipulatorCommands.intake());
-        _controller.start().onTrue(CompositeCommands.output());
-        _controller.rightStick().onTrue(ManipulatorCommands.stop());*/
+        /*
+         * _controller.back().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
+         * _controller.povUp().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1))
+         * ; _controller.povRight().onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level2));
+         * _controller.povDown().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3
+         * ));
+         * _controller.povLeft().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4
+         * )); _controller.leftStick().onTrue(ManipulatorCommands.intake());
+         * _controller.start().onTrue(CompositeCommands.output());
+         * _controller.rightStick().onTrue(ManipulatorCommands.stop());
+         */
     }
 
     @SuppressWarnings("unused")
@@ -106,43 +108,43 @@ public class RobotContainer
 
         _driverButtons.button(9)
                 .whileTrue(DriveCommands.driveAtOrientation(() -> -_driverJoystick.getY(), () -> -_driverJoystick.getX(), () -> robotCentric(), () -> Constants.Field.BLUE_PROCESSOR_ANGLE, Constants.Drive.MAX_SNAP_SPEED_PERCENTAGE));
-/* 
-        // Operator Controls
-        _operatorButtons.button(1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
-        // .alongWith(new DeferredCommand(() -> LEDCommands.setDefaultColor(_led,
-        // (_hasCoral.getAsBoolean() ? Constants.LED.PURPLE : Constants.LED.RED)),
-        // Set.of())));
-        _operatorButtons.button(2).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
-        // .alongWith(new DeferredCommand(() -> LEDCommands.setDefaultColor(_led,
-        // (_hasCoral.getAsBoolean() ? Constants.LED.PINK : Constants.LED.RED)),
-        // Set.of())));
-        _operatorButtons.button(3).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
-        // .alongWith(new DeferredCommand(() -> LEDCommands.setDefaultColor(_led,
-        // (_hasCoral.getAsBoolean() ? Constants.LED.BLUE : Constants.LED.RED)),
-        // Set.of())));
-        _operatorButtons.button(4).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
-        // .alongWith(new DeferredCommand(() -> LEDCommands.setDefaultColor(_led,
-        // (_hasCoral.getAsBoolean() ? Constants.LED.ORANGE : Constants.LED.RED)),
-        // Set.of())));
-        _operatorButtons.button(5).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
-        // .alongWith(new DeferredCommand(() -> LEDCommands.setDefaultColor(_led,
-        // (_hasCoral.getAsBoolean() ? Constants.LED.GREEN : Constants.LED.RED)),
-        // Set.of())));
-
-        _operatorButtons.button(6).onTrue(CompositeCommands.fancyIntake());
-        _operatorButtons.button(7).onTrue(ManipulatorCommands.stop());
-        _operatorButtons.button(8).onTrue(CompositeCommands.output());*/
-        //_operatorButtons.button(9).onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-        //_operatorButtons.button(10).onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+        /*
+         * // Operator Controls
+         * _operatorButtons.button(1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level4)); // .alongWith(new DeferredCommand(() ->
+         * LEDCommands.setDefaultColor(_led, // (_hasCoral.getAsBoolean() ?
+         * Constants.LED.PURPLE : Constants.LED.RED)), // Set.of())));
+         * _operatorButtons.button(2).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level3)); // .alongWith(new DeferredCommand(() ->
+         * LEDCommands.setDefaultColor(_led, // (_hasCoral.getAsBoolean() ?
+         * Constants.LED.PINK : Constants.LED.RED)), // Set.of())));
+         * _operatorButtons.button(3).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level2)); // .alongWith(new DeferredCommand(() ->
+         * LEDCommands.setDefaultColor(_led, // (_hasCoral.getAsBoolean() ?
+         * Constants.LED.BLUE : Constants.LED.RED)), // Set.of())));
+         * _operatorButtons.button(4).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level1)); // .alongWith(new DeferredCommand(() ->
+         * LEDCommands.setDefaultColor(_led, // (_hasCoral.getAsBoolean() ?
+         * Constants.LED.ORANGE : Constants.LED.RED)), // Set.of())));
+         * _operatorButtons.button(5).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Stow)); // .alongWith(new DeferredCommand(() ->
+         * LEDCommands.setDefaultColor(_led, // (_hasCoral.getAsBoolean() ?
+         * Constants.LED.GREEN : Constants.LED.RED)), // Set.of())));
+         * _operatorButtons.button(6).onTrue(CompositeCommands.fancyIntake());
+         * _operatorButtons.button(7).onTrue(ManipulatorCommands.stop());
+         * _operatorButtons.button(8).onTrue(CompositeCommands.output());
+         */
+        // _operatorButtons.button(9).onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+        // _operatorButtons.button(10).onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
         // _operatorButtons.button(11).onTrue(null);// replace with algae intake
         // _operatorButtons.button(12).onTrue(null);// replace with algaei output
         // _operatorButton12.onTrue(null);// replace with algae stop
-        //(_operatorButton14.or(_operatorButtons.povUp())).whileTrue(ElevatorCommands.hangExecute());
+        // (_operatorButton14.or(_operatorButtons.povUp())).whileTrue(ElevatorCommands.hangExecute());
         // .alongWith(LEDCommands.flashColor(Constants.LED.RED)).until(() ->
         // _elevator.atSetpoint())
         // .andThen(LEDCommands.setDefaultColor(Constants.LED.YELLOW))
         // );
-        //(_operatorButton15.or(_operatorButtons.povDown())).and(_driverJoystick.button(4)).onTrue(FunnelCommands.drop().alongWith(ElevatorCommands.setHeight(ElevatorHeight.Hang)));
+        // (_operatorButton15.or(_operatorButtons.povDown())).and(_driverJoystick.button(4)).onTrue(FunnelCommands.drop().alongWith(ElevatorCommands.setHeight(ElevatorHeight.Hang)));
 
         // _operatorButtons.button(9).and(_operatorButtons.button(10)).onTrue(Commands.runOnce(()
         // ->
