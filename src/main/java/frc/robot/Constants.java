@@ -35,10 +35,10 @@ public final class Constants
 
     public static class AIO
     {
-        public static final int FL_ENCODER = 13;
-        public static final int FR_ENCODER = 11;
-        public static final int BL_ENCODER = 14;
-        public static final int BR_ENCODER = 12;
+        public static final int FL_ENCODER = 14;
+        public static final int FR_ENCODER = 12;
+        public static final int BL_ENCODER = 13;
+        public static final int BR_ENCODER = 11;
     }
 
     public static class Autos
@@ -51,14 +51,14 @@ public final class Constants
 
     public static class CAN
     {
-        public static final int FL_DRIVE          = 9;
-        public static final int FR_DRIVE          = 10;
-        public static final int BL_DRIVE          = 7;
-        public static final int BR_DRIVE          = 5;
-        public static final int FL_TURN           = 3;
-        public static final int FR_TURN           = 4;
-        public static final int BL_TURN           = 6;
-        public static final int BR_TURN           = 2;
+        public static final int FL_DRIVE          = 7;
+        public static final int FR_DRIVE          = 5;
+        public static final int BL_DRIVE          = 9;
+        public static final int BR_DRIVE          = 10;
+        public static final int FL_TURN           = 6;
+        public static final int FR_TURN           = 2;
+        public static final int BL_TURN           = 3;
+        public static final int BR_TURN           = 4;
         public static final int LEAD_ELEVATOR     = 15;
         public static final int FOLLOWER_ELEVATOR = 16;
         public static final int MANIPULATOR       = 17;
@@ -83,21 +83,26 @@ public final class Constants
 
     public static class Drive
     {
+<<<<<<< Updated upstream
         public static final double          TRACK_WIDTH                   = Units.inchesToMeters(22); // The distance between the centers of your front OR back wheels
         public static final double          WHEEL_BASE                    = Units.inchesToMeters(26); // Center distance between your front AND back wheels
+=======
+        public static final double          TRACK_WIDTH                   = Units.inchesToMeters(24);
+        public static final double          WHEEL_BASE                    = Units.inchesToMeters(24);
+>>>>>>> Stashed changes
         public static final double          DRIVE_BASE_RADIUS             = Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
         public static final Translation2d[] MODULE_TRANSLATIONS           = new Translation2d[] { new Translation2d(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0),
                 new Translation2d(-TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(-TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0) };
-        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRotations(-0.119141);
-        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRotations(.211182); // Need to adapt for our hardware
-        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRotations(-0.179199);
-        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.163818);
+        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRotations(0.459717);
+        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.414795); // Need to adapt for our hardware
+        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRotations(-0.370605);
+        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.428955);
         public static final int             DRIVE_MOTOR_CURRENT_LIMIT     = 120;
         public static final double          WHEEL_RADIUS                  = Units.inchesToMeters(2);
         public static final double          DRIVE_MOTOR_REDUCTION         = 5.67;
         public static final boolean         DRIVE_INVERTED                = false;
         public static final DCMotor         DRIVE_GEARBOX                 = DCMotor.getNEO(1);
-        public static final double          DRIVE_KP                      = 0.05;
+        public static final double          DRIVE_KP                      = 0.08;
         public static final double          DRIVE_KD                      = 0.0;
         public static final double          DRIVE_KS                      = 0.0;
         public static final double          DRIVE_KV                      = 0.1;
@@ -109,12 +114,12 @@ public final class Constants
         public static final int             TURN_MOTOR_CURRENT_LIMIT      = 80;
         public static final double          TURN_MOTOR_REDUCTION          = 12.1;
         public static final DCMotor         TURN_GEARBOX                  = DCMotor.getNEO(1);
-        public static final double          TURN_KP                       = 1.25;
+        public static final double          TURN_KP                       = 1.75;
         public static final double          TURN_KD                       = 0.0;
         public static final double          TURN_SIM_KP                   = 8.0;
         public static final double          TURN_SIM_KD                   = 0.0;
         public static final double          ODOMETRY_FREQUENCY            = 100.0; // ms
-        public static final double          ROTATE_KP                     = 0.2;
+        public static final double          ROTATE_KP                     = 0.02;
         public static final double          ROTATE_KD                     = 0.0;
         public static final double          MAX_SPEED_ELEVATOR_MULTIPLIER = 1;
         public static final double          MIN_SPEED_ELEVATOR_MULTIPLIER = 0.3;
