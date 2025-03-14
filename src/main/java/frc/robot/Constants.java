@@ -83,8 +83,8 @@ public final class Constants
 
     public static class Drive
     {
-        public static final double          TRACK_WIDTH                   = Units.inchesToMeters(22);
-        public static final double          WHEEL_BASE                    = Units.inchesToMeters(26);
+        public static final double          TRACK_WIDTH                   = Units.inchesToMeters(22); // The distance between the centers of your front OR back wheels
+        public static final double          WHEEL_BASE                    = Units.inchesToMeters(26); // Center distance between your front AND back wheels
         public static final double          DRIVE_BASE_RADIUS             = Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
         public static final Translation2d[] MODULE_TRANSLATIONS           = new Translation2d[] { new Translation2d(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0),
                 new Translation2d(-TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(-TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0) };
@@ -215,7 +215,7 @@ public final class Constants
 
     public static class Manipulator
     {
-        public static final DCMotor MANIPULATOR_MOTOR   = DCMotor.getVex775Pro(1);
+        public static final DCMotor MANIPULATOR_MOTOR   = DCMotor.getNEO(1);
         public static final double  MOTOR_REDUCTION     = 5.0;
         public static final double  INTAKE_SPEED        = 3.5 / Constants.General.MOTOR_VOLTAGE; // What we had when we were measuring in volts
         public static final double  SLOW_INTAKE_SPEED   = 1.5 / Constants.General.MOTOR_VOLTAGE;
