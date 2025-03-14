@@ -7,10 +7,8 @@ public interface ManipulatorIO
     @AutoLog // adds logging to ManipulatorIO interface
     public static class ManipulatorIOInputs
     {
-        public double  leftAppliedVolts   = 0.0;
-        public double  leftCurrentAmps    = 0.0;
-        public double  rightAppliedVolts  = 0.0;
-        public double  rightCurrentAmps   = 0.0;
+        public double  AppliedVolts       = 0.0;
+        public double  CurrentAmps        = 0.0;
         public boolean startSensorTripped = false;
         public boolean endSensorTripped   = false;
     }
@@ -21,15 +19,10 @@ public interface ManipulatorIO
 
     public default void setVolts(double volts)
     {
-        setLeftVolts(volts);
-        setRightVolts(volts);
+        setMotorVolts(volts);
     }
 
-    public default void setLeftVolts(double volts)
-    {
-    }
-
-    public default void setRightVolts(double volts)
+    public default void setMotorVolts(double volts)
     {
     }
 }

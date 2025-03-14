@@ -1,13 +1,13 @@
-/*package frc.robot.commands;
+package frc.robot.commands;
 
 import java.util.function.DoubleSupplier;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.Constants;
 import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
-import frc.robot.subsystems.funnel.Funnel;
 
 public class ElevatorCommands
 {
@@ -57,14 +57,10 @@ public class ElevatorCommands
 
     public static Command hangExecute()
     {
-        // SlewRateLimiter limiter = new SlewRateLimiter(Constants.Elevator.HANG_SPEED *
-        // Constants.General.MOTOR_VOLTAGE / 2.0);
+        SlewRateLimiter limiter = new SlewRateLimiter(Constants.Elevator.HANG_SPEED * Constants.General.MOTOR_VOLTAGE / 2.0);
 
-        return Commands.sequence(
-                // Elevator.getInstance().runOnce(() -> limiter.reset(0)),
-                Elevator.getInstance().run(() -> Elevator.getInstance().setVolts(-Constants.Elevator.HANG_SPEED * Constants.General.MOTOR_VOLTAGE))
-        ).finallyDo(() -> Elevator.getInstance().stop());
+        return Commands.sequence(Elevator.getInstance().runOnce(() -> limiter.reset(0)), Elevator.getInstance().run(() -> Elevator.getInstance().setVolts(-Constants.Elevator.HANG_SPEED * Constants.General.MOTOR_VOLTAGE)))
+                .finallyDo(() -> Elevator.getInstance().stop());
 
     }
 }
-*/
