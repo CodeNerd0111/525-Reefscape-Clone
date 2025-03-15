@@ -29,10 +29,10 @@ public class Manipulator extends SubsystemBase
         return _instance;
     }
 
-    private final ManipulatorIO       _io;
-    private final ManipulatorIOInputs _inputs = new ManipulatorIOInputs();
-    private Debouncer                 _debouncer;
-    private boolean                   _coralDetected;
+    private final ManipulatorIO                 _io;
+    private final ManipulatorIOInputsAutoLogged _inputs = new ManipulatorIOInputsAutoLogged();
+    private Debouncer                           _debouncer;
+    private boolean                             _coralDetected;
 
     private Manipulator(ManipulatorIO io)
     {

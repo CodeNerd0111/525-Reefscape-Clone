@@ -83,13 +83,8 @@ public final class Constants
 
     public static class Drive
     {
-<<<<<<< Updated upstream
-        public static final double          TRACK_WIDTH                   = Units.inchesToMeters(22); // The distance between the centers of your front OR back wheels
-        public static final double          WHEEL_BASE                    = Units.inchesToMeters(26); // Center distance between your front AND back wheels
-=======
         public static final double          TRACK_WIDTH                   = Units.inchesToMeters(24);
         public static final double          WHEEL_BASE                    = Units.inchesToMeters(24);
->>>>>>> Stashed changes
         public static final double          DRIVE_BASE_RADIUS             = Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
         public static final Translation2d[] MODULE_TRANSLATIONS           = new Translation2d[] { new Translation2d(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0),
                 new Translation2d(-TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(-TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0) };
