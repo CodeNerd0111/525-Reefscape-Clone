@@ -1,5 +1,7 @@
 package frc.robot.commands;
 
+import static frc.robot.Constants.Elevator.L4_HEIGHT;
+
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
@@ -31,14 +33,10 @@ public class CompositeCommands
             double     linearMagnitude = MathUtil.applyDeadband(Math.hypot(xSupplier.getAsDouble(), ySupplier.getAsDouble()), Constants.Controls.JOYSTICK_DEADBAND);
             Rotation2d linearDirection = new Rotation2d(xSupplier.getAsDouble(), ySupplier.getAsDouble());
             double     omega           = MathUtil.applyDeadband(omegaSupplier.getAsDouble(), Constants.Controls.JOYSTICK_DEADBAND);
-            double     clamp           = 1.0;
             // What clamp is double clamp = MathUtil.clamp(omega, translateExponent,
             // rotateExponent)
-            // For slower drive when elevator extended OLD CODE double clamp = MathUtil
-            // .clamp((Constants.Drive.SPEED_ELEVATOR_M *
-            // Elevator.getInstance().getExtension() + Constants.Drive.SPEED_ELEVATOR_B),
-            // Constants.Drive.MIN_SPEED_ELEVATOR_MULTIPLIER,
-            // Constants.Drive.MAX_SPEED_ELEVATOR_MULTIPLIER);
+            double clamp = MathUtil
+                    .clamp((Constants.Drive.SPEED_ELEVATOR_M * Elevator.getInstance().getExtension() + Constants.Drive.SPEED_ELEVATOR_B), Constants.Drive.MIN_SPEED_ELEVATOR_MULTIPLIER, Constants.Drive.MAX_SPEED_ELEVATOR_MULTIPLIER);
 
             // Square values
             linearMagnitude = Math.pow(linearMagnitude, translateExponent);
@@ -65,21 +63,33 @@ public class CompositeCommands
         }, Drive.getInstance());
     }
 
-    /*
-     * public static Command intake() { return
-     * Commands.repeatingSequence(ManipulatorCommands.intake()).until(() ->
-     * Manipulator.getInstance().hasCoral()).unless(() ->
-     * Manipulator.getInstance().hasCoral()); } public static Command fancyIntake()
-     * { return Commands.repeatingSequence(ManipulatorCommands.intake()).until(() ->
-     * Manipulator.getInstance().hasCoral()).andThen(ManipulatorCommands.index()).
-     * unless(() -> Manipulator.getInstance().hasCoral()); } public static
-     * Commandoutput() { return Commands.sequence(ManipulatorCommands.output(),
-     * Commands.waitSeconds(Constants.Elevator.WAIT_TIME),
-     * ElevatorCommands.setHeight(ElevatorHeight.Stow)); }
-     */
+    public static Command intake()
+    {
+        return Commands.sequence(ManipulatorCommands.intake());
+    }
+
+    public static Command fancyIntake()
+    {
+        return Commands.repeatingSequence(ManipulatorCommands.intake()).until(() -> Manipulator.getInstance().hasCoral()).andThen(ManipulatorCommands.index()).unless(() -> Manipulator.getInstance().hasCoral());
+    }
+
+    public static Command output()
+    {
+        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(.35), ManipulatorCommands.intake(), ElevatorCommands.stow());
+    }
 
     public static Command setHeight(ElevatorHeight height)
     {
         return Commands.sequence(ElevatorCommands.setHeight(height), Commands.waitUntil(() -> Elevator.getInstance().atSetpoint()));
+    }
+
+    public static Command stop()
+    {
+        return Commands.sequence(ManipulatorCommands.stop());
+    }
+
+    public static Command L4_Drop() // Work in progress
+    {
+        return Commands.sequence(ElevatorCommands.setHeight(ElevatorHeight.Level4), ManipulatorCommands.output());
     }
 }

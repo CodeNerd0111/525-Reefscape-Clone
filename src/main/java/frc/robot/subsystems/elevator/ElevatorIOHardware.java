@@ -26,13 +26,13 @@ public class ElevatorIOHardware implements ElevatorIO
 
         var leaderConfig = new SparkMaxConfig();
 
-        leaderConfig.idleMode(IdleMode.kBrake).voltageCompensation(Constants.General.MOTOR_VOLTAGE).inverted(true).smartCurrentLimit(120);
-        leaderConfig.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder).outputRange(0, Constants.Elevator.MAX_EXTENSION);
+        leaderConfig.idleMode(IdleMode.kBrake).voltageCompensation(Constants.General.MOTOR_VOLTAGE).inverted(false).smartCurrentLimit(120);
+        leaderConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).outputRange(0, Constants.Elevator.MAX_EXTENSION);
 
         var followerConfig = new SparkMaxConfig();
 
-        followerConfig.idleMode(IdleMode.kBrake).voltageCompensation(Constants.General.MOTOR_VOLTAGE).follow(Constants.CAN.LEAD_ELEVATOR, true).smartCurrentLimit(120);
-        followerConfig.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder).outputRange(0, Constants.Elevator.MAX_EXTENSION);
+        followerConfig.idleMode(IdleMode.kBrake).voltageCompensation(Constants.General.MOTOR_VOLTAGE).follow(Constants.CAN.LEAD_ELEVATOR, false).smartCurrentLimit(120);
+        followerConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).outputRange(0, Constants.Elevator.MAX_EXTENSION);
 
         Utilities.tryUntilOk(_leaderSparkMax, 5, () -> _leaderSparkMax.configure(leaderConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters));
         Utilities.tryUntilOk(_followerSparkMax, 5, () -> _followerSparkMax.configure(followerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters));

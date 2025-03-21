@@ -24,9 +24,9 @@ public class ManipulatorIOSim implements ManipulatorIO
     public void updateInputs(ManipulatorIOInputs inputs)
     {
         _MotorSim.update(Constants.General.LOOP_PERIOD_SECS);
-        inputs.CurrentAmps        = Math.abs(_MotorSim.getCurrentDrawAmps());
-        inputs.startSensorTripped = _lightSensorStart.get();
-        inputs.endSensorTripped   = _lightSensorEnd.get();
+        inputs.CurrentAmps = Math.abs(_MotorSim.getCurrentDrawAmps());
+        // inputs.startSensorTripped = _lightSensorStart.get();
+        // inputs.endSensorTripped = _lightSensorEnd.get();
     }
 
     @Override

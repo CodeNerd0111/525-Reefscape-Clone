@@ -15,11 +15,10 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.CompositeCommands;
-// import frc.robot.commands.ManipulatorCommands;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
-// import frc.robot.subsystems.manipulator.Manipulator;
+import frc.robot.commands.ManipulatorCommands;
 
 public class Dashboard extends SubsystemBase
 {
@@ -57,8 +56,8 @@ public class Dashboard extends SubsystemBase
         NamedCommands.registerCommand("ExtendToL3", CompositeCommands.setHeight(ElevatorHeight.Level3));
         NamedCommands.registerCommand("ExtendToL4", CompositeCommands.setHeight(ElevatorHeight.Level4));
         NamedCommands.registerCommand("Stow", CompositeCommands.setHeight(ElevatorHeight.Stow));
-        // NamedCommands.registerCommand("Intake", ManipulatorCommands.intake());
-        // NamedCommands.registerCommand("Output", CompositeCommands.output());
+        NamedCommands.registerCommand("Intake", ManipulatorCommands.intake());
+        NamedCommands.registerCommand("Output", CompositeCommands.output());
 
         NamedCommands.registerCommand("Delay", Commands.defer(() -> Commands.waitSeconds(_inputs.autoDelay), Set.of()));
     }
@@ -80,17 +79,7 @@ public class Dashboard extends SubsystemBase
         _io.setDriveBRAngle(states[3].angle);
         _io.setDriveBRVelocity(states[3].speedMetersPerSecond);
         _io.setDriveHeading(Drive.getInstance().getRotation());
-        /*
-         * _io.setManipulatorLeftMotorOutputPercentSpeed(Manipulator.getInstance().
-         * getLeftOutputSpeed());
-         * _io.setManipulatorRightMotorOutputPercentSpeed(Manipulator.getInstance().
-         * getRightOutputSpeed());
-         * _io.setManipulatorStartSensorTripped(Manipulator.getInstance().
-         * isStartSensorTripped());
-         * _io.setManipulatorEndSensorTripped(Manipulator.getInstance().
-         * isEndSensorTripped());
-         * _io.setFunnelIsDropped(Funnel.getInstance().isDropped());
-         */
+
         _io.setElevatorHeight(Elevator.getInstance().getExtension());
         _io.setElevatorSetpoint(Elevator.getInstance().getSetpoint());
 

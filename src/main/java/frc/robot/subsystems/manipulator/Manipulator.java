@@ -44,33 +44,28 @@ public class Manipulator extends SubsystemBase
     public void periodic()
     {
         _io.updateInputs(_inputs);
-        _coralDetected = (!_inputs.startSensorTripped && _inputs.endSensorTripped) || (Elevator.getInstance().getExtension() > ((Constants.Elevator.L3_HEIGHT + Constants.Elevator.L4_HEIGHT) / 2.0) && _inputs.endSensorTripped);
-        // Logger.processInputs("Manipulator", _inputs); Its broken dont know why :/
+        _coralDetected = true;
+        // _coralDetected = (/* !_inputs.startSensorTripped && _inputs.endSensorTripped)
+        // || */ (Elevator.getInstance().getExtension() > ((Constants.Elevator.L3_HEIGHT
+        // + Constants.Elevator.L4_HEIGHT) / 2.0) /* && _inputs.endSensorTripped */));
+        Logger.processInputs("Manipulator", _inputs);
         Logger.recordOutput("Detected Coral", _coralDetected);
         Logger.recordOutput("Has Coral", hasCoral());
     }
 
     public void output()
     {
-        if (Elevator.getInstance().getExtension() < Constants.Elevator.L2_HEIGHT)
-        {
-            _io.setMotorVolts(Dashboard.getInstance().getManipulatorOutputPercentSpeed() * Constants.General.MOTOR_VOLTAGE);
-
-        }
-        else
-        {
-            _io.setVolts(Dashboard.getInstance().getManipulatorOutputPercentSpeed() * Constants.General.MOTOR_VOLTAGE);
-        }
+        _io.setVolts(-3);
     }
 
     public void slowIntake()
     {
-        _io.setVolts(Constants.Manipulator.SLOW_INTAKE_SPEED * Constants.General.MOTOR_VOLTAGE);
+        _io.setVolts(3);
     }
 
     public void intake()
     {
-        _io.setVolts(Dashboard.getInstance().getManipulatorIntakePercentSpeed() * Constants.General.MOTOR_VOLTAGE);
+        _io.setVolts(3);
     }
 
     public void stop()
@@ -103,13 +98,8 @@ public class Manipulator extends SubsystemBase
         return _inputs.AppliedVolts / Constants.General.MOTOR_VOLTAGE;
     }
 
-    public boolean isStartSensorTripped()
-    {
-        return _inputs.startSensorTripped;
-    }
-
-    public boolean isEndSensorTripped()
-    {
-        return _inputs.endSensorTripped;
-    }
+    /*
+     * public boolean isStartSensorTripped() { return _inputs.startSensorTripped; }
+     * public boolean isEndSensorTripped() { return _inputs.endSensorTripped; }
+     */
 }

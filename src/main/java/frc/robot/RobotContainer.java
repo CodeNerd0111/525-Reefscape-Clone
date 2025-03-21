@@ -12,8 +12,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.CompositeCommands;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.ElevatorCommands;
-// import frc.robot.commands.FunnelCommands;
-// import frc.robot.commands.ManipulatorCommands;
+import frc.robot.commands.ManipulatorCommands;
 import frc.robot.subsystems.dashboard.Dashboard;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
@@ -25,7 +24,7 @@ public class RobotContainer
     private final CommandJoystick       _driverJoystick  = new CommandJoystick(0);
     private final CommandJoystick       _driverButtons   = new CommandJoystick(1);
     private final CommandJoystick       _operatorButtons = new CommandJoystick(2);
-    private final CommandXboxController _controller      = new CommandXboxController(3); // This is just for testing
+    private final CommandXboxController _controller      = new CommandXboxController(3);
     private String                      _elasticTab      = "Teleoperated";
 
     /**
@@ -48,14 +47,13 @@ public class RobotContainer
         Drive.getInstance().setDefaultCommand(DriveCommands.joystickDrive(() -> -_controller.getLeftY(), () -> -_controller.getLeftX(), () -> -_controller.getRightX(), () -> false));
         _controller.a().onTrue(DriveCommands.setOdometer(new Pose2d(Units.inchesToMeters(297.5), Units.inchesToMeters(158.5), Rotation2d.fromDegrees(0))));
 
-        _controller.back().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
-        _controller.povUp().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
-        _controller.povRight().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
-        _controller.povDown().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
-        _controller.povLeft().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
-        // _controller.leftStick().onTrue(ManipulatorCommands.intake());
-        // _controller.start().onTrue(CompositeCommands.output());
-        // _controller.rightStick().onTrue(ManipulatorCommands.stop());
+        _controller.a().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
+        _controller.b().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
+        _controller.x().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
+        _controller.y().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
+        _controller.start().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
+        _controller.leftBumper().onTrue(CompositeCommands.intake());
+        _controller.rightBumper().onTrue(CompositeCommands.output());
 
     }
 
@@ -65,6 +63,7 @@ public class RobotContainer
         // Trigger _hasCoral = new Trigger(() -> _manipulator.hasCoral());
         // Trigger _manipulatorRunning = new Trigger(() -> _manipulator.isRunning());
         // Trigger _operatorButton12 = _operatorButtons.axisGreaterThan(0, 0.5);
+
         Trigger _operatorButton14 = _operatorButtons.axisLessThan(1, -0.5);
         Trigger _operatorButton15 = _operatorButtons.axisGreaterThan(1, 0.5);
 
@@ -79,8 +78,9 @@ public class RobotContainer
         // _driverJoystick.button(3).onTrue(null); // replace this with switching
         // cameras/
         _driverJoystick.button(11).onTrue(DriveCommands.resetGyro());
+        _driverJoystick.trigger().onTrue(CompositeCommands.output());
 
-        _driverButtons.button(1)
+        _driverButtons.button(10)
                 .whileTrue(DriveCommands.driveAtOrientation(() -> -_driverJoystick.getY(), () -> -_driverJoystick.getX(), () -> robotCentric(), () -> Constants.Field.BLUE_REEF_ANGLE_ONE, Constants.Drive.MAX_SNAP_SPEED_PERCENTAGE));
 
         _driverButtons.button(2)
@@ -107,33 +107,39 @@ public class RobotContainer
         _driverButtons.button(9)
                 .whileTrue(DriveCommands.driveAtOrientation(() -> -_driverJoystick.getY(), () -> -_driverJoystick.getX(), () -> robotCentric(), () -> Constants.Field.BLUE_PROCESSOR_ANGLE, Constants.Drive.MAX_SNAP_SPEED_PERCENTAGE));
 
+        _controller.back().onTrue(ElevatorCommands.stow());
+        _controller.b().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
+        _controller.x().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
+        _controller.y().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
+        _controller.a().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
+        _controller.leftBumper().onTrue(CompositeCommands.intake());
+        _controller.rightBumper().onTrue(CompositeCommands.output());
         // Operator Controls
-        _operatorButtons.button(1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
-        _operatorButtons.button(2).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
-        _operatorButtons.button(3).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
-        _operatorButtons.button(4).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
-        _operatorButtons.button(5).onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
         /*
-         * _operatorButtons.button(6).onTrue(CompositeCommands.fancyIntake());
+         * _operatorButtons.button 1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level4));
+         * _operatorButtons.button(2).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level3));
+         * _operatorButtons.button(3).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level2));
+         * _operatorButtons.button(4).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Level1));
+         * _operatorButtons.button(5).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
+         * Stow)); _operatorButtons.button(6).onTrue(CompositeCommands.fancyIntake());
          * _operatorButtons.button(7).onTrue(ManipulatorCommands.stop());
          * _operatorButtons.button(8).onTrue(CompositeCommands.output());
+         * _operatorButtons.button(9).onTrue(ElevatorCommands.modifyHeight(Constants.
+         * Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+         * _operatorButtons.button(10).onTrue(ElevatorCommands.modifyHeight(-Constants.
+         * Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+         * (_operatorButton14.or(_operatorButtons.povUp())).whileTrue(ElevatorCommands.
+         * hangExecute());
+         * _operatorButtons.button(9).and(_operatorButtons.button(10)).onTrue(Commands.
+         * runOnce(() -> { if (_elasticTab == "Teleoperated") { _elasticTab =
+         * "Programmer"; } else { _elasticTab = "Teleoperated"; }
+         * Elastic.selectTab(_elasticTab);
+         * }).andThen(Commands.print("Swap")).ignoringDisable(true));
          */
-        _operatorButtons.button(9).onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-        _operatorButtons.button(10).onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-        (_operatorButton14.or(_operatorButtons.povUp())).whileTrue(ElevatorCommands.hangExecute());
-        _operatorButtons.button(9).and(_operatorButtons.button(10)).onTrue(Commands.runOnce(() ->
-        {
-            if (_elasticTab == "Teleoperated")
-            {
-                _elasticTab = "Programmer";
-            }
-            else
-            {
-                _elasticTab = "Teleoperated";
-            }
-
-            Elastic.selectTab(_elasticTab);
-        }).andThen(Commands.print("Swap")).ignoringDisable(true));
 
     }
 
