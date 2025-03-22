@@ -109,7 +109,7 @@ public class Robot extends LoggedRobot
     public void autonomousInit()
     {
         _autonomousCommand = _robotContainer.getAutonomousCommand();
-
+        _robotContainer.startCommand();
         // schedule the autonomous command (example)
         if (_autonomousCommand != null)
         {
@@ -125,7 +125,7 @@ public class Robot extends LoggedRobot
         {
             Elastic.selectTab("Teleoperated");
         }
-
+        _robotContainer.startCommand();        
         // This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove

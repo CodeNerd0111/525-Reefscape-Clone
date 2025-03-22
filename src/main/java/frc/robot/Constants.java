@@ -163,8 +163,8 @@ public final class Constants
         public static final double  RAW_SENSOR_MAX               = 0.394;
         public static final double  MIN_EXTENSION                = 0.0;
         public static final double  MAX_EXTENSION                = 13.0;
-        public static final double  EXTENSION_KP                 = 0.35;
-        public static final double  EXTENSION_KI                 = 0.0;
+        public static final double  EXTENSION_KP                 = 0.4;
+        public static final double  EXTENSION_KI                 = 0.05;
         public static final double  EXTENSION_KD                 = 0.0;
         public static final double  EXTENSION_TOLERANCE          = 1.0;
         public static final double  STOW_HEIGHT                  = MIN_EXTENSION;
@@ -185,6 +185,8 @@ public final class Constants
         public static final double  ELEVATOR_MODIFICATION_HEIGHT = 0.5;
         public static final double  HANG_SPEED                   = 1.0;
         public static final double  WAIT_TIME                    = 1;
+        public static final double  MAX_ACCELERATION             = 2;
+        public static final double  MAX_VELOCITY                 = 12;
     }
 
     public static class Funnel

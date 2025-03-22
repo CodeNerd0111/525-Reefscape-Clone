@@ -153,4 +153,8 @@ public class RobotContainer
         return false;
         // return _driverJoystick.button(1).getAsBoolean();
     }
+    public Command startCommand()
+    {
+        return CompositeCommands.start();
+    }
 }

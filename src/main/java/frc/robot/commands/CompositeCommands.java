@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import static frc.robot.Constants.Elevator.L1_HEIGHT;
 import static frc.robot.Constants.Elevator.L4_HEIGHT;
 
 import java.util.function.BooleanSupplier;
@@ -75,7 +76,7 @@ public class CompositeCommands
 
     public static Command output()
     {
-        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(.35), ManipulatorCommands.intake(), ElevatorCommands.stow());
+        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(.35), ManipulatorCommands.intake(), ElevatorCommands.setHeight(L1_HEIGHT));
     }
 
     public static Command setHeight(ElevatorHeight height)
@@ -91,5 +92,9 @@ public class CompositeCommands
     public static Command L4_Drop() // Work in progress
     {
         return Commands.sequence(ElevatorCommands.setHeight(ElevatorHeight.Level4), ManipulatorCommands.output());
+    }
+    public static Command start()
+    {
+        return Commands.sequence(ElevatorCommands.setHeight(1));
     }
 }

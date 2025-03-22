@@ -32,7 +32,7 @@ public class ElevatorCommands
         }
     }
 
-    public static Command stow()
+    public static Command stow() // Only use at the end of the run
     {
         return Commands.sequence(
                 Elevator.getInstance().runOnce(() -> Elevator.getInstance().setExtension(ElevatorHeight.Stow)), Commands.waitUntil(() -> Elevator.getInstance().atSetpoint()),

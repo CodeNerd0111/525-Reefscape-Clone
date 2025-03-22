@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 import static frc.robot.Constants.Elevator.*;
 
@@ -55,6 +56,8 @@ public class Elevator extends SubsystemBase
     private Double                           _extensionSetpoint = null;
     private final Alert                      _potAlert;
     private double                           _lastPosition      = 0.0; // Last 20 milisecond elevator position
+    private final TrapezoidProfile           _trapezoidProfile  = new TrapezoidProfile(new TrapezoidProfile.Constraints(Constants.Elevator.MAX_VELOCITY, Constants.Elevator.MAX_ACCELERATION));
+    private TrapezoidProfile.State           _trapezoidSetpoint = new TrapezoidProfile.State();
 
     private Elevator(ElevatorIO io)
     {
@@ -74,7 +77,8 @@ public class Elevator extends SubsystemBase
 
         if (_extensionSetpoint != null)
         {
-            _io.setVolts(MathUtil.clamp(_extensionPID.calculate(_inputs.extensionPosition, _extensionSetpoint) + Constants.Elevator.ELEVATOR_FEED_FORWARD, -Constants.General.MOTOR_VOLTAGE / 5, Constants.General.MOTOR_VOLTAGE));
+            _trapezoidSetpoint = _trapezoidProfile.calculate(.02, _trapezoidSetpoint, new TrapezoidProfile.State(_extensionSetpoint, 0));
+            _io.setVolts(MathUtil.clamp(_extensionPID.calculate(_inputs.extensionPosition, _trapezoidSetpoint.position) + Constants.Elevator.ELEVATOR_FEED_FORWARD, -Constants.General.MOTOR_VOLTAGE / 5, Constants.General.MOTOR_VOLTAGE));
             Logger.recordOutput("Setpoint", _extensionSetpoint);
         }
 
