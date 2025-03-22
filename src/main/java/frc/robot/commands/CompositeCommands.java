@@ -76,7 +76,7 @@ public class CompositeCommands
 
     public static Command output()
     {
-        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(.35), ManipulatorCommands.intake(), ElevatorCommands.setHeight(L1_HEIGHT));
+        return Commands.sequence(ManipulatorCommands.output(), Commands.waitSeconds(.35), ManipulatorCommands.intake());
     }
 
     public static Command setHeight(ElevatorHeight height)
@@ -93,8 +93,9 @@ public class CompositeCommands
     {
         return Commands.sequence(ElevatorCommands.setHeight(ElevatorHeight.Level4), ManipulatorCommands.output());
     }
+
     public static Command start()
     {
-        return Commands.sequence(ElevatorCommands.setHeight(1));
+        return Commands.sequence(ElevatorCommands.setHeight(4));
     }
 }

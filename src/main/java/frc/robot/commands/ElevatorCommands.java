@@ -63,4 +63,9 @@ public class ElevatorCommands
                 .finallyDo(() -> Elevator.getInstance().stop());
 
     }
+
+    public static Command exitSetpoint()
+    {
+        return Commands.sequence(Elevator.getInstance().runOnce(() -> Elevator.getInstance().setExtension(null)));
+    }
 }

@@ -1,22 +1,22 @@
 package frc.robot;
 
+import frc.robot.Constants;
+
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.CompositeCommands;
 import frc.robot.commands.DriveCommands;
 import frc.robot.commands.ElevatorCommands;
-import frc.robot.commands.ManipulatorCommands;
 import frc.robot.subsystems.dashboard.Dashboard;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
-import frc.robot.util.Elastic;
 
 public class RobotContainer
 {
@@ -25,17 +25,15 @@ public class RobotContainer
     private final CommandJoystick       _driverButtons   = new CommandJoystick(1);
     private final CommandJoystick       _operatorButtons = new CommandJoystick(2);
     private final CommandXboxController _controller      = new CommandXboxController(3);
-    private String                      _elasticTab      = "Teleoperated";
 
-    /**
+    /*
      * The container for the robot. Contains subsystems, OI devices, and commands.
      */
     public RobotContainer()
     {
         DriverStation.silenceJoystickConnectionWarning(true);
-
+        CameraServer.startAutomaticCapture();
         // Dashboard.getInstance();
-
         // Configure the button bindings
         configureButtonBindings();
         // configureTestBindings();
@@ -107,13 +105,16 @@ public class RobotContainer
         _driverButtons.button(9)
                 .whileTrue(DriveCommands.driveAtOrientation(() -> -_driverJoystick.getY(), () -> -_driverJoystick.getX(), () -> robotCentric(), () -> Constants.Field.BLUE_PROCESSOR_ANGLE, Constants.Drive.MAX_SNAP_SPEED_PERCENTAGE));
 
-        _controller.back().onTrue(ElevatorCommands.stow());
         _controller.b().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
         _controller.x().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
         _controller.y().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
         _controller.a().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
         _controller.leftBumper().onTrue(CompositeCommands.intake());
         _controller.rightBumper().onTrue(CompositeCommands.output());
+        _driverJoystick.povUp().onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+        _driverJoystick.povDown().onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+        _controller.povUp().onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
+        _controller.povDown().onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
         // Operator Controls
         /*
          * _operatorButtons.button 1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
@@ -153,8 +154,9 @@ public class RobotContainer
         return false;
         // return _driverJoystick.button(1).getAsBoolean();
     }
-    public Command startCommand()
+
+    public void exit()
     {
-        return CompositeCommands.start();
+        ElevatorCommands.exitSetpoint();
     }
 }
