@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Threads;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.util.Elastic;
 
 import org.littletonrobotics.junction.LogFileUtil;
@@ -17,6 +19,8 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import org.littletonrobotics.urcl.URCL;
+import frc.robot.commands.ElevatorCommands;
+import frc.robot.subsystems.elevator.Elevator;
 
 public class Robot extends LoggedRobot
 {
@@ -25,6 +29,7 @@ public class Robot extends LoggedRobot
     private final Alert          _rioBrownout;
     private final MedianFilter   _voltageFilter;
     private Command              _autonomousCommand;
+    private Command              _elevatorReset;
 
     public Robot()
     {
@@ -143,14 +148,14 @@ public class Robot extends LoggedRobot
     }
 
     @Override
-    public void teleopExit()
+    public void disabledInit()
     {
-        _robotContainer.exit();
-    }
-
-    @Override
-    public void autonomousExit()
-    {
-        _robotContainer.exit();
+        new InstantCommand(() -> ElevatorCommands.exitSetpoint()) {
+            @Override
+            public boolean runsWhenDisabled()
+            {
+                return true;
+            }
+        }.schedule();
     }
 }

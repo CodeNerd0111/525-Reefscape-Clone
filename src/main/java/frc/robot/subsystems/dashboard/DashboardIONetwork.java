@@ -95,13 +95,7 @@ public class DashboardIONetwork implements DashboardIO
         Preferences.initDouble(_elevatorKDKey, Constants.Elevator.EXTENSION_KD);
         Preferences.initDouble(_elevatorMaxDownPercentKey, Constants.Elevator.MAX_DOWNWARDS_SPEED);
         Preferences.initDouble(_elevatorMaxUpPercentKey, Constants.Elevator.MAX_UPWARDS_SPEED);
-        Preferences.initDouble(_manipulatorIntakePercentKey, Constants.Manipulator.INTAKE_SPEED);
-        // Preferences.initDouble(_manipulatorSlowIntakePercentKey,
-        // Constants.Manipulator.SLOW_INTAKE_SPEED);
-        Preferences.initDouble(_manipulatorOutputPercentKey, Constants.Manipulator.OUTPUT_SPEED);
-        Preferences.initDouble(_manipulatorL1SpeedMultiplierKey, Constants.Manipulator.L1_SPEED_MULTIPLIER);
-        Preferences.initDouble(_funnelRetractPercentKey, Constants.Funnel.RETRACT_SPEED);
-        Preferences.initDouble(_funnelRetractTimeKey, Constants.Funnel.DROP_TIME_SECS);
+
         Preferences.initDouble(_driveFLOffsetKey, Constants.Drive.FL_ZERO_ROTATION.getDegrees());
         Preferences.initDouble(_driveFROffsetKey, Constants.Drive.FR_ZERO_ROTATION.getDegrees());
         Preferences.initDouble(_driveBLOffsetKey, Constants.Drive.BL_ZERO_ROTATION.getDegrees());
@@ -223,18 +217,6 @@ public class DashboardIONetwork implements DashboardIO
         inputs.elevatorMaxDownwardPercentSpeed = Preferences.getDouble(_elevatorMaxDownPercentKey, Constants.Elevator.MAX_DOWNWARDS_SPEED);
         inputs.elevatorMaxUpwardPercentSpeed   = Preferences.getDouble(_elevatorMaxUpPercentKey, Constants.Elevator.MAX_UPWARDS_SPEED);
         inputs.elevatorHangSpeed               = Preferences.getDouble(_elevatorHangSpeedKey, Constants.Elevator.HANG_SPEED);
-
-        // Manipulator
-        inputs.manipulatorIntakePercentSpeed = Preferences.getDouble(_manipulatorIntakePercentKey, Constants.Manipulator.INTAKE_SPEED);
-        // inputs.manipulatorSlowIntakePercentSpeed =
-        // Preferences.getDouble(_manipulatorSlowIntakePercentKey,
-        // Constants.Manipulator.SLOW_INTAKE_SPEED);
-        inputs.manipulatorOutputPercentSpeed = Preferences.getDouble(_manipulatorOutputPercentKey, Constants.Manipulator.OUTPUT_SPEED);
-        inputs.manipulatorL1SpeedMultiplier  = Preferences.getDouble(_manipulatorL1SpeedMultiplierKey, Constants.Manipulator.L1_SPEED_MULTIPLIER);
-
-        // Funnel
-        inputs.funnelRetractPercentSpeed = Preferences.getDouble(_funnelRetractPercentKey, Constants.Funnel.RETRACT_SPEED);
-        inputs.funnelRetractTime         = Preferences.getDouble(_funnelRetractTimeKey, Constants.Funnel.DROP_TIME_SECS);
 
         // Drive
         inputs.driveFLOffset = Rotation2d.fromDegrees(Preferences.getDouble(_driveFLOffsetKey, Constants.Drive.FL_ZERO_ROTATION.getDegrees()));

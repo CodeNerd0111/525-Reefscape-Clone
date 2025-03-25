@@ -26,17 +26,6 @@ public interface DashboardIO
         public double elevatorMaxDownwardPercentSpeed = Constants.Elevator.MAX_DOWNWARDS_SPEED;
         public double elevatorHangSpeed               = Constants.Elevator.HANG_SPEED;
 
-        // Manipulator
-        public double manipulatorIntakePercentSpeed = Constants.Manipulator.INTAKE_SPEED;
-        // public double manipulatorSlowIntakePercentSpeed =
-        // Constants.Manipulator.SLOW_INTAKE_SPEED;
-        public double manipulatorOutputPercentSpeed = Constants.Manipulator.OUTPUT_SPEED;
-        public double manipulatorL1SpeedMultiplier  = Constants.Manipulator.L1_SPEED_MULTIPLIER;
-
-        // Funnel
-        public double funnelRetractPercentSpeed = Constants.Funnel.RETRACT_SPEED;
-        public double funnelRetractTime         = Constants.Funnel.DROP_TIME_SECS;
-
         // Drive
         public Rotation2d driveFLOffset = Constants.Drive.FL_ZERO_ROTATION;
         public Rotation2d driveFROffset = Constants.Drive.FR_ZERO_ROTATION;

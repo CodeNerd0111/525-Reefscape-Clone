@@ -198,33 +198,6 @@ public class Dashboard extends SubsystemBase
         return _selectedAuto;
     }
 
-    public double getFunnelRetractPercentSpeed()
-    {
-        return _inputs.funnelRetractPercentSpeed;
-    }
-
-    public double getFunnelRetractTime()
-    {
-        return _inputs.funnelRetractTime;
-    }
-
-    public double getManipulatorIntakePercentSpeed()
-
-    {
-
-        return _inputs.manipulatorIntakePercentSpeed;
-    }
-
-    public double getManipulatorOutputPercentSpeed()
-    {
-        return _inputs.manipulatorOutputPercentSpeed;
-    }
-
-    public double getManipulatorL1SpeedMultiplier()
-    {
-        return _inputs.manipulatorL1SpeedMultiplier;
-    }
-
     public double getElevatorMinHeight()
     {
         return _inputs.elevatorMinHeight;

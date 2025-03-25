@@ -15,11 +15,6 @@ public class ManipulatorCommands
         return Manipulator.getInstance().runOnce(() -> Manipulator.getInstance().setVolts(-3)).andThen(Commands.waitSeconds(0.35)).finallyDo(() -> Manipulator.getInstance().stop());
     }
 
-    public static Command index()
-    {
-        return Manipulator.getInstance().runOnce(() -> Manipulator.getInstance().setVolts(-1)).andThen(Commands.waitSeconds(0.35)).finallyDo(() -> Manipulator.getInstance().stop());
-    }
-
     public static Command output()
     {
         return Manipulator.getInstance().runOnce(() -> Manipulator.getInstance().setVolts(3)).andThen(Commands.waitSeconds(0.35)).finallyDo(() -> Manipulator.getInstance().stop());
