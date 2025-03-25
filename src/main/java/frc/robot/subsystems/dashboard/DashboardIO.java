@@ -62,6 +62,7 @@ public interface DashboardIO
         public int    autoDelay         = 0;
         public String autoStartPosition = "";
         public int    autoNumCoral      = 0;
+        public String autoNameOverride = "";
     }
 
     public default void updateInputs(DashboardIOInputs inputs)

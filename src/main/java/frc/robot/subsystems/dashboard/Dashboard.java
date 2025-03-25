@@ -169,29 +169,64 @@ public class Dashboard extends SubsystemBase
             switch (_inputs.autoStartPosition)
             {
                 case "Left":
-                    _selectedAuto = Constants.Autos.LEFT_1_CORAL_AUTO;
+                    switch (_inputs.autoNumCoral)
+                    {
+                        case 1:
+                            _selectedAuto = Constants.auto.LEFT_1_CORAL_AUTO;
+                            break;
+                        case 2:
+                            _selectedAuto = Constants.auto.LEFT_2_CORAL_AUTO;
+                            break;
+                        case 3:
+                            _selectedAuto = Constants.auto.LEFT_3_CORAL_AUTO;
+                            break;
+                        default:
+                            _selectedAuto = null;
+                    }
                     break;
 
                 case "Right":
-                    if (_inputs.autoNumCoral == 2)
+                    switch (_inputs.autoNumCoral)
                     {
-                        _selectedAuto = Constants.Autos.RIGHT_2_CORAL_AUTO;
-                    }
-                    else
-                    {
-                        _selectedAuto = Constants.Autos.RIGHT_1_CORAL_AUTO;
+                        case 1:
+                            _selectedAuto = Constants.auto.RIGHT_1_CORAL_AUTO;
+                            break;
+                        case 2:
+                            _selectedAuto = Constants.auto.RIGHT_2_CORAL_AUTO;
+                            break;
+                        case 3:
+                            _selectedAuto = Constants.auto.RIGHT_3_CORAL_AUTO;
+                            break;
+                        default:
+                            _selectedAuto = null;
                     }
                     break;
 
                 case "Middle":
-                    _selectedAuto = Constants.Autos.MIDDLE_1_CORAL_AUTO;
+                    switch (_inputs.autoNumCoral)
+                    {
+                        case 1:
+                            _selectedAuto = Constants.auto.MIDDLE_1_CORAL_AUTO;
+                            break;
+                        case 2:
+                            _selectedAuto = Constants.auto.MIDDLE_2_CORAL_AUTO;
+                            break;
+                        case 3:
+                            _selectedAuto = Constants.auto.MIDDLE_3_CORAL_AUTO;
+                            break;
+                        default:
+                            _selectedAuto = null;
+                    }
                     break;
 
                 default:
                     _selectedAuto = null;
             }
         }
-
+        //This is untested and probably doesn't work.
+        if (inputs._autoNameOverrideChooser != "None") {
+            _selectedAuto = Constants.auto.getAutoFromNameOverride(inputs._autoNameOverrideChooser);
+        }
         if (_selectedAuto != null)
         {
             _io.setRobotPose(_selectedAuto.getStartingPose());

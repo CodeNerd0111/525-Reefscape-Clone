@@ -76,6 +76,7 @@ public class DashboardIONetwork implements DashboardIO
     private final SendableChooser<Integer> _autoDelayChooser;
     private final SendableChooser<String>  _autoStartPositionChooser;
     private final SendableChooser<Integer> _autoCoralCountChooser;
+    private final SendableChooser<String> _autoNameOverrideChooser;
 
     // Field
     private final Field2d _field;
@@ -180,6 +181,7 @@ public class DashboardIONetwork implements DashboardIO
         _autoDelayChooser         = new SendableChooser<Integer>();
         _autoStartPositionChooser = new SendableChooser<String>();
         _autoCoralCountChooser    = new SendableChooser<Integer>();
+        _autoNameOverrideChooser    = new SendableChooser<String>();
 
         _autoDelayChooser.setDefaultOption("0", 0);
         _autoDelayChooser.addOption("1", 1);
@@ -195,10 +197,15 @@ public class DashboardIONetwork implements DashboardIO
         _autoCoralCountChooser.setDefaultOption("0", 0);
         _autoCoralCountChooser.addOption("1", 1);
         _autoCoralCountChooser.addOption("2", 2);
+        _autoCoralCountChooser.addOption("3", 3);
+
+        
+        _autoNameOverrideChooser.setDefaultOption("None", "");
 
         SmartDashboard.putData("Auto Delay", _autoDelayChooser);
         SmartDashboard.putData("Start Position", _autoStartPositionChooser);
         SmartDashboard.putData("Number of Coral", _autoCoralCountChooser);
+        SmartDashboard.putData("Override: Name of Auto", _autoNameOverrideChooser);
 
         // Field
         _field = new Field2d();
@@ -261,6 +268,7 @@ public class DashboardIONetwork implements DashboardIO
         inputs.autoDelay         = _autoDelayChooser.getSelected();
         inputs.autoStartPosition = _autoStartPositionChooser.getSelected();
         inputs.autoNumCoral      = _autoCoralCountChooser.getSelected();
+        inputs.autoNameOverride      = _autoCoralCountChooser.getSelected();
     }
 
     @Override

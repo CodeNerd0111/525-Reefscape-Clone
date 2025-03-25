@@ -49,7 +49,43 @@
         {
           "type": "path",
           "data": {
-            "pathName": "GTowardRightCS"
+            "pathName": "GToRightCS"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ExtendToL1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "RightCSToD"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ExtendToL4"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Output"
           }
         }
       ]

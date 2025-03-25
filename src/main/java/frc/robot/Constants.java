@@ -43,10 +43,43 @@ public final class Constants
 
     public static class Autos
     {
-        public static final PathPlannerAuto LEFT_1_CORAL_AUTO   = new PathPlannerAuto("Left_J");
-        public static final PathPlannerAuto MIDDLE_1_CORAL_AUTO = new PathPlannerAuto("Middle_G");
-        public static final PathPlannerAuto RIGHT_1_CORAL_AUTO  = new PathPlannerAuto("Right_E");
-        public static final PathPlannerAuto RIGHT_2_CORAL_AUTO  = new PathPlannerAuto("Right_DC");
+        /*
+         * The naming conventions of the autos contain the initial position of the robot (Either in 
+         * the left, middle, or right starting positions), and then a string of 3 letters indicating the rung
+         * they will attempt to put a coral on, and in what order it will put them on
+         * 
+         * 
+         * 
+         * 
+         *                    K          J
+         *                       /    \
+         *               L    /          \    I
+         *                 /                \ 
+         *            A  |                    |  H
+         *               |                    |
+         *               |                    |
+         *            B  |                    |  G
+         *                 \                /
+         *               C    \          /    F
+         *                       \    /
+         *                    D          E
+         * 
+         * IMPORTANT - THE NAMES DO NOT INDICATE AT WHAT HEIGHT THE CORALS WILL BE DISPENSED!!!
+         * 
+         */
+        public static final PathPlannerAuto LEFT_1_CORAL_AUTO   = getAutoFromNameOverride("Left_J");
+        public static final PathPlannerAuto MIDDLE_1_CORAL_AUTO = getAutoFromNameOverride("Middle_G");
+        public static final PathPlannerAuto RIGHT_1_CORAL_AUTO  = getAutoFromNameOverride("Right_E");
+        public static final PathPlannerAuto LEFT_2_CORAL_AUTO  = getAutoFromNameOverride("Left_JK");
+        public static final PathPlannerAuto RIGHT_2_CORAL_AUTO  = getAutoFromNameOverride("Right_DC");
+        public static final PathPlannerAuto MIDDLE_2_CORAL_AUTO  = getAutoFromNameOverride("Middle_GD");
+        public static final PathPlannerAuto LEFT_3_CORAL_AUTO  = getAutoFromNameOverride("Left_JKL");
+        public static final PathPlannerAuto RIGHT_3_CORAL_AUTO  = getAutoFromNameOverride("Right_FDC");
+        public static final PathPlannerAuto MIDDLE_3_CORAL_AUTO  = getAutoFromNameOverride("Middle_GAB");
+        
+        public static PathPlannerAuto getAutoFromNameOverride(String name) {
+            return new PathPlannerAuto(name);
+        }
     }
 
     public static class CAN

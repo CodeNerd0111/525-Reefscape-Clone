@@ -3,42 +3,35 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 5.957249999999999,
-        "y": 3.8592499999999994
+        "x": 7.464448051948052,
+        "y": 2.0662946428571423
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.5000211625432485,
-        "y": 0.7630985460050659
+        "x": 6.4620655795752775,
+        "y": 2.089500335086041
       },
       "isLocked": false,
-      "linkedName": "G"
+      "linkedName": "Right Start"
     },
     {
       "anchor": {
-        "x": 1.6738027597402598,
-        "y": 0.6845170454545451
+        "x": 3.63675,
+        "y": 2.8842499999999998
       },
       "prevControl": {
-        "x": 5.386641166384004,
-        "y": 0.9389875424829437
+        "x": 4.1925,
+        "y": 2.22125
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "RightCS"
+      "linkedName": "C"
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "Stow",
-      "waypointRelativePos": 0,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.0,
     "maxAcceleration": 3.0,
@@ -52,10 +45,10 @@
     "rotation": 59.99999999999999
   },
   "reversed": false,
-  "folder": "MiddleStartingSide",
+  "folder": "RightStartingSide",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": 119.99999999999999
   },
   "useDefaultConstraints": true
 }
