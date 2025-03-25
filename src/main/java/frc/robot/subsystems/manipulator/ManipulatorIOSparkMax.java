@@ -7,21 +7,15 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
-import edu.wpi.first.wpilibj.DigitalInput;
-
 import frc.robot.Constants;
 
 public class ManipulatorIOSparkMax implements ManipulatorIO
 {
-    private final SparkMax     _Motor;
-    private final DigitalInput _startSensor;
-    private final DigitalInput _endSensor;
+    private final SparkMax _Motor;
 
     public ManipulatorIOSparkMax()
     {
-        _Motor       = new SparkMax(Constants.CAN.MANIPULATOR, MotorType.kBrushed);
-        _startSensor = new DigitalInput(Constants.DIO.MANIPULATOR_LIGHT_SENSOR_START);
-        _endSensor   = new DigitalInput(Constants.DIO.MANIPULATOR_LIGHT_SENSOR_END);
+        _Motor = new SparkMax(Constants.CAN.MANIPULATOR, MotorType.kBrushed);
 
         var leftConfig = new SparkMaxConfig();
 

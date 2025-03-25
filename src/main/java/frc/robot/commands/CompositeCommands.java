@@ -1,8 +1,5 @@
 package frc.robot.commands;
 
-import static frc.robot.Constants.Elevator.L1_HEIGHT;
-import static frc.robot.Constants.Elevator.L4_HEIGHT;
-
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
@@ -18,7 +15,6 @@ import frc.robot.Constants;
 import frc.robot.subsystems.drive.Drive;
 import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.Elevator.ElevatorHeight;
-import frc.robot.subsystems.manipulator.Manipulator;
 
 public class CompositeCommands
 {
@@ -87,10 +83,5 @@ public class CompositeCommands
     public static Command L4_Drop() // Work in progress
     {
         return Commands.sequence(ElevatorCommands.setHeight(ElevatorHeight.Level4), ManipulatorCommands.output());
-    }
-
-    public static Command start()
-    {
-        return Commands.sequence(ElevatorCommands.setHeight(4));
     }
 }

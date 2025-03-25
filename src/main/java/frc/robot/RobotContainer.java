@@ -1,7 +1,5 @@
 package frc.robot;
 
-import frc.robot.Constants;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -46,12 +44,12 @@ public class RobotContainer
         _controller.a().onTrue(DriveCommands.setOdometer(new Pose2d(Units.inchesToMeters(297.5), Units.inchesToMeters(158.5), Rotation2d.fromDegrees(0))));
 
         _controller.a().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Stow));
+        _controller.leftBumper().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Intake));
+        _controller.rightBumper().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Intake));
         _controller.b().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level1));
         _controller.x().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
         _controller.y().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
         _controller.start().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
-        _controller.leftBumper().onTrue(CompositeCommands.intake());
-        _controller.rightBumper().onTrue(CompositeCommands.output());
 
     }
 
@@ -109,38 +107,15 @@ public class RobotContainer
         _controller.x().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level2));
         _controller.y().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level3));
         _controller.a().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Level4));
+        _controller.leftBumper().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Intake));
+        _controller.rightBumper().onTrue(ElevatorCommands.setHeight(ElevatorHeight.Intake));
+        _controller.back().onTrue(ElevatorCommands.stow());
         _controller.leftBumper().onTrue(CompositeCommands.intake());
         _controller.rightBumper().onTrue(CompositeCommands.output());
         _driverJoystick.povUp().onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
         _driverJoystick.povDown().onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
         _controller.povUp().onTrue(ElevatorCommands.modifyHeight(Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
         _controller.povDown().onTrue(ElevatorCommands.modifyHeight(-Constants.Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-        // Operator Controls
-        /*
-         * _operatorButtons.button 1).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
-         * Level4));
-         * _operatorButtons.button(2).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
-         * Level3));
-         * _operatorButtons.button(3).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
-         * Level2));
-         * _operatorButtons.button(4).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
-         * Level1));
-         * _operatorButtons.button(5).onTrue(ElevatorCommands.setHeight(ElevatorHeight.
-         * Stow)); _operatorButtons.button(6).onTrue(CompositeCommands.fancyIntake());
-         * _operatorButtons.button(7).onTrue(ManipulatorCommands.stop());
-         * _operatorButtons.button(8).onTrue(CompositeCommands.output());
-         * _operatorButtons.button(9).onTrue(ElevatorCommands.modifyHeight(Constants.
-         * Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-         * _operatorButtons.button(10).onTrue(ElevatorCommands.modifyHeight(-Constants.
-         * Elevator.ELEVATOR_MODIFICATION_HEIGHT));
-         * (_operatorButton14.or(_operatorButtons.povUp())).whileTrue(ElevatorCommands.
-         * hangExecute());
-         * _operatorButtons.button(9).and(_operatorButtons.button(10)).onTrue(Commands.
-         * runOnce(() -> { if (_elasticTab == "Teleoperated") { _elasticTab =
-         * "Programmer"; } else { _elasticTab = "Teleoperated"; }
-         * Elastic.selectTab(_elasticTab);
-         * }).andThen(Commands.print("Swap")).ignoringDisable(true));
-         */
 
     }
 
@@ -153,10 +128,5 @@ public class RobotContainer
     {
         return false;
         // return _driverJoystick.button(1).getAsBoolean();
-    }
-
-    public void exit()
-    {
-        ElevatorCommands.exitSetpoint();
     }
 }

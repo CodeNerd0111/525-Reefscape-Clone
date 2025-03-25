@@ -16,7 +16,7 @@ public class Elevator extends SubsystemBase
 {
     public enum ElevatorHeight
     {
-        Stow(STOW_HEIGHT), Level1(L1_HEIGHT), Level2(L2_HEIGHT), Level3(L3_HEIGHT), Level4(L4_HEIGHT), Hang(HANG_HEIGHT);
+        Stow(STOW_HEIGHT), Level1(L1_HEIGHT), Level2(L2_HEIGHT), Level3(L3_HEIGHT), Level4(L4_HEIGHT), Intake(INTAKE_HEIGHT);
 
         private double _height;
 

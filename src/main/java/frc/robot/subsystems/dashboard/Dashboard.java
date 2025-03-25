@@ -233,16 +233,6 @@ public class Dashboard extends SubsystemBase
         return _inputs.elevatorL4Height;
     }
 
-    public double getElevatorHangHeight()
-    {
-        return _inputs.elevatorHangHeight;
-    }
-
-    public double getElevatorHangSpeed()
-    {
-        return _inputs.elevatorHangSpeed;
-    }
-
     public double getElevatorKP()
     {
         return _inputs.elevatorKP;

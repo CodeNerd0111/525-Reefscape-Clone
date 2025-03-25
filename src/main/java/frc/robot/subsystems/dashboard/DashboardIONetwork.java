@@ -13,30 +13,21 @@ import frc.robot.Constants;
 public class DashboardIONetwork implements DashboardIO
 {
     // Dashboard Settings
-    private final String _elevatorMinHeightKey        = "Dashboard/Dashboard Settings/Elevator Min Height";
-    private final String _elevatorMaxHeightKey        = "Dashboard/Dashboard Settings/Elevator Max Height";
-    private final String _elevatorStowHeightKey       = "Dashboard/Dashboard Settings/Elevator Stow Height";
-    private final String _elevatorL1HeightKey         = "Dashboard/Dashboard Settings/Elevator L1 Height";
-    private final String _elevatorL2HeightKey         = "Dashboard/Dashboard Settings/Elevator L2 Height";
-    private final String _elevatorL3HeightKey         = "Dashboard/Dashboard Settings/Elevator L3 Height";
-    private final String _elevatorL4HeightKey         = "Dashboard/Dashboard Settings/Elevator L4 Height";
-    private final String _elevatorHangHeightKey       = "Dashboard/Dashboard Settings/Elevator Hang Height";
-    private final String _elevatorHangSpeedKey        = "Dashboard/Dashboard Settings/Elevator Hang Speed";
-    private final String _elevatorKPKey               = "Dashboard/Dashboard Settings/Elevator kP";
-    private final String _elevatorKDKey               = "Dashboard/Dashboard Settings/Elevator kD";
-    private final String _elevatorMaxDownPercentKey   = "Dashboard/Dashboard Settings/Elevator Max Down Speed";
-    private final String _elevatorMaxUpPercentKey     = "Dashboard/Dashboard Settings/Elevator Max Up Speed";
-    private final String _manipulatorIntakePercentKey = "Dashboard/Dashboard Settings/Manipulator Intake Speed";
-    // private final String _manipulatorSlowIntakePercentKey = "Dashboard/Dashboard
-    // Settings/Manipulator Slow Intake Speed";
-    private final String _manipulatorOutputPercentKey     = "Dashboard/Dashboard Settings/Manipulator Output Speed";
-    private final String _manipulatorL1SpeedMultiplierKey = "Dashboard/Dashboard Settings/Manipulator L1 Speed Multiplier";
-    private final String _funnelRetractPercentKey         = "Dashboard/Dashboard Settings/Funnel Retract Speed";
-    private final String _funnelRetractTimeKey            = "Dashboard/Dashboard Settings/Funnel Retract Time";
-    private final String _driveFLOffsetKey                = "Dashboard/Dashboard Settings/Drive FL Offset";
-    private final String _driveFROffsetKey                = "Dashboard/Dashboard Settings/Drive FR Offset";
-    private final String _driveBLOffsetKey                = "Dashboard/Dashboard Settings/Drive BL Offset";
-    private final String _driveBROffsetKey                = "Dashboard/Dashboard Settings/Drive BR Offset";
+    private final String _elevatorMinHeightKey      = "Dashboard/Dashboard Settings/Elevator Min Height";
+    private final String _elevatorMaxHeightKey      = "Dashboard/Dashboard Settings/Elevator Max Height";
+    private final String _elevatorStowHeightKey     = "Dashboard/Dashboard Settings/Elevator Stow Height";
+    private final String _elevatorL1HeightKey       = "Dashboard/Dashboard Settings/Elevator L1 Height";
+    private final String _elevatorL2HeightKey       = "Dashboard/Dashboard Settings/Elevator L2 Height";
+    private final String _elevatorL3HeightKey       = "Dashboard/Dashboard Settings/Elevator L3 Height";
+    private final String _elevatorL4HeightKey       = "Dashboard/Dashboard Settings/Elevator L4 Height";
+    private final String _elevatorKPKey             = "Dashboard/Dashboard Settings/Elevator kP";
+    private final String _elevatorKDKey             = "Dashboard/Dashboard Settings/Elevator kD";
+    private final String _elevatorMaxDownPercentKey = "Dashboard/Dashboard Settings/Elevator Max Down Speed";
+    private final String _elevatorMaxUpPercentKey   = "Dashboard/Dashboard Settings/Elevator Max Up Speed";
+    private final String _driveFLOffsetKey          = "Dashboard/Dashboard Settings/Drive FL Offset";
+    private final String _driveFROffsetKey          = "Dashboard/Dashboard Settings/Drive FR Offset";
+    private final String _driveBLOffsetKey          = "Dashboard/Dashboard Settings/Drive BL Offset";
+    private final String _driveBROffsetKey          = "Dashboard/Dashboard Settings/Drive BR Offset";
 
     // Robot Values
     private final NetworkTableEntry _elevatorHeight;
@@ -89,8 +80,6 @@ public class DashboardIONetwork implements DashboardIO
         Preferences.initDouble(_elevatorL2HeightKey, Constants.Elevator.L2_HEIGHT);
         Preferences.initDouble(_elevatorL3HeightKey, Constants.Elevator.L3_HEIGHT);
         Preferences.initDouble(_elevatorL4HeightKey, Constants.Elevator.L4_HEIGHT);
-        Preferences.initDouble(_elevatorHangHeightKey, Constants.Elevator.HANG_HEIGHT);
-        Preferences.initDouble(_elevatorHangSpeedKey, Constants.Elevator.HANG_SPEED);
         Preferences.initDouble(_elevatorKPKey, Constants.Elevator.EXTENSION_KP);
         Preferences.initDouble(_elevatorKDKey, Constants.Elevator.EXTENSION_KD);
         Preferences.initDouble(_elevatorMaxDownPercentKey, Constants.Elevator.MAX_DOWNWARDS_SPEED);
@@ -211,12 +200,10 @@ public class DashboardIONetwork implements DashboardIO
         inputs.elevatorL2Height                = Preferences.getDouble(_elevatorL2HeightKey, Constants.Elevator.L2_HEIGHT);
         inputs.elevatorL3Height                = Preferences.getDouble(_elevatorL3HeightKey, Constants.Elevator.L3_HEIGHT);
         inputs.elevatorL4Height                = Preferences.getDouble(_elevatorL4HeightKey, Constants.Elevator.L4_HEIGHT);
-        inputs.elevatorHangHeight              = Preferences.getDouble(_elevatorHangHeightKey, Constants.Elevator.HANG_HEIGHT);
         inputs.elevatorKP                      = Preferences.getDouble(_elevatorKPKey, Constants.Elevator.EXTENSION_KP);
         inputs.elevatorKD                      = Preferences.getDouble(_elevatorKDKey, Constants.Elevator.EXTENSION_KD);
         inputs.elevatorMaxDownwardPercentSpeed = Preferences.getDouble(_elevatorMaxDownPercentKey, Constants.Elevator.MAX_DOWNWARDS_SPEED);
         inputs.elevatorMaxUpwardPercentSpeed   = Preferences.getDouble(_elevatorMaxUpPercentKey, Constants.Elevator.MAX_UPWARDS_SPEED);
-        inputs.elevatorHangSpeed               = Preferences.getDouble(_elevatorHangSpeedKey, Constants.Elevator.HANG_SPEED);
 
         // Drive
         inputs.driveFLOffset = Rotation2d.fromDegrees(Preferences.getDouble(_driveFLOffsetKey, Constants.Drive.FL_ZERO_ROTATION.getDegrees()));

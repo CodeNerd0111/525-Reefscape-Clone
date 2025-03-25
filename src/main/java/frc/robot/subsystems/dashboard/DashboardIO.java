@@ -19,12 +19,10 @@ public interface DashboardIO
         public double elevatorL2Height                = Constants.Elevator.L2_HEIGHT;
         public double elevatorL3Height                = Constants.Elevator.L3_HEIGHT;
         public double elevatorL4Height                = Constants.Elevator.L4_HEIGHT;
-        public double elevatorHangHeight              = Constants.Elevator.HANG_HEIGHT;
         public double elevatorKP                      = Constants.Elevator.EXTENSION_KP;
         public double elevatorKD                      = Constants.Elevator.EXTENSION_KD;
         public double elevatorMaxUpwardPercentSpeed   = Constants.Elevator.MAX_UPWARDS_SPEED;
         public double elevatorMaxDownwardPercentSpeed = Constants.Elevator.MAX_DOWNWARDS_SPEED;
-        public double elevatorHangSpeed               = Constants.Elevator.HANG_SPEED;
 
         // Drive
         public Rotation2d driveFLOffset = Constants.Drive.FL_ZERO_ROTATION;
