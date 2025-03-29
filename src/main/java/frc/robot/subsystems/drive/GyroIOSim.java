@@ -1,4 +1,4 @@
-package frc.robot.subsystems.drive;
+/*package frc.robot.subsystems.drive;
 
 import java.util.function.Supplier;
 
@@ -29,3 +29,4 @@ public class GyroIOSim implements GyroIO
         inputs.yawVelocityRadPerSec = chassisSpeeds.omegaRadiansPerSecond;
     }
 }
+*/

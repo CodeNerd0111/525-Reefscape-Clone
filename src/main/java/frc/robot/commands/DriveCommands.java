@@ -85,7 +85,7 @@ public final class DriveCommands
 
     public static Command reduceSpeed()
     {
-        return Commands.startEnd(() -> Drive.getInstance().setSpeedMultiplier(0.15), () -> Drive.getInstance().setSpeedMultiplier(.5));
+        return Commands.startEnd(() -> Drive.getInstance().setSpeedMultiplier(0.15), () -> Drive.getInstance().setSpeedMultiplier(.75));
     }
 
     public static Command stop()

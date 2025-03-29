@@ -40,7 +40,7 @@ public class Elevator extends SubsystemBase
             var io = switch (Constants.AdvantageKit.CURRENT_MODE)
             {
                 case REAL -> new ElevatorIOHardware();
-                case SIM -> new ElevatorIOSim();
+                //case SIM -> new ElevatorIOSim();
                 default -> new ElevatorIO() {};
             };
 

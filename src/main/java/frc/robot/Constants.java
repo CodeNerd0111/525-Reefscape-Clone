@@ -65,7 +65,7 @@ public final class Constants
 
     public static class Controls
     {
-        public static final double JOYSTICK_DEADBAND = 0.1;
+        public static final double JOYSTICK_DEADBAND = 0.01;
     }
 
     public static class Dashboard
@@ -87,16 +87,16 @@ public final class Constants
         public static final double          DRIVE_BASE_RADIUS             = Math.hypot(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0);
         public static final Translation2d[] MODULE_TRANSLATIONS           = new Translation2d[] { new Translation2d(TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0),
                 new Translation2d(-TRACK_WIDTH / 2.0, WHEEL_BASE / 2.0), new Translation2d(-TRACK_WIDTH / 2.0, -WHEEL_BASE / 2.0) };
-        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRotations(0.074707);
-        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRotations(0.129883); // Need to adapt for our hardware
-        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRotations(0.084229);
-        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.036865);
+        public static final Rotation2d      FL_ZERO_ROTATION              = Rotation2d.fromRotations(0.075439);
+        public static final Rotation2d      FR_ZERO_ROTATION              = Rotation2d.fromRotations(0.120605); // Need to adapt for our hardware
+        public static final Rotation2d      BL_ZERO_ROTATION              = Rotation2d.fromRotations(0.089600);
+        public static final Rotation2d      BR_ZERO_ROTATION              = Rotation2d.fromRotations(-0.034424);
         public static final int             DRIVE_MOTOR_CURRENT_LIMIT     = 60;
         public static final double          WHEEL_RADIUS                  = Units.inchesToMeters(2);
         public static final double          DRIVE_MOTOR_REDUCTION         = 5.67;
         public static final boolean         DRIVE_INVERTED                = false;
         public static final DCMotor         DRIVE_GEARBOX                 = DCMotor.getNEO(1);
-        public static final double          DRIVE_KP                      = 0.08;
+        public static final double          DRIVE_KP                      = 0.07;
         public static final double          DRIVE_KD                      = 0.0;
         public static final double          DRIVE_KS                      = 0.0;
         public static final double          DRIVE_KV                      = 0.1;
@@ -108,7 +108,7 @@ public final class Constants
         public static final int             TURN_MOTOR_CURRENT_LIMIT      = 60;
         public static final double          TURN_MOTOR_REDUCTION          = 12.1;
         public static final DCMotor         TURN_GEARBOX                  = DCMotor.getNEO(1);
-        public static final double          TURN_KP                       = 1.75;
+        public static final double          TURN_KP                       = 2.3;
         public static final double          TURN_KD                       = 0.0;
         public static final double          TURN_SIM_KP                   = 8.0;
         public static final double          TURN_SIM_KD                   = 0.0;
@@ -160,18 +160,18 @@ public final class Constants
     {
         public static final double  RAW_SENSOR_MIN               = 0.634;
         public static final double  RAW_SENSOR_MAX               = 0.394;
-        public static final double  MIN_EXTENSION                = 1.0;
+        public static final double  MIN_EXTENSION                = 0.0;
         public static final double  MAX_EXTENSION                = 27.0;
         public static final double  EXTENSION_KP                 = 3;
         public static final double  EXTENSION_KI                 = 0.0;
         public static final double  EXTENSION_KD                 = 0.025;
         public static final double  EXTENSION_TOLERANCE          = 1.0;
         public static final double  STOW_HEIGHT                  = MIN_EXTENSION;
-        public static final double  INTAKE_HEIGHT                = MIN_EXTENSION + 7;
-        public static final double  L1_HEIGHT                    = MIN_EXTENSION + 7;
-        public static final double  L2_HEIGHT                    = MIN_EXTENSION + 10;
+        public static final double  INTAKE_HEIGHT                = MIN_EXTENSION + 3;
+        public static final double  L1_HEIGHT                    = MIN_EXTENSION + 6.5;
+        public static final double  L2_HEIGHT                    = MIN_EXTENSION + 9.5;
         public static final double  L3_HEIGHT                    = MIN_EXTENSION + 15.8;
-        public static final double  L4_HEIGHT                    = MIN_EXTENSION + 25;
+        public static final double  L4_HEIGHT                    = MIN_EXTENSION + 24.5;
         public static final double  MAX_UPWARDS_SPEED            = 1;
         public static final double  MAX_DOWNWARDS_SPEED          = 0.5;
         public static final double  EXTENSION_SCALE              = (MAX_EXTENSION - MIN_EXTENSION) / (RAW_SENSOR_MAX - RAW_SENSOR_MIN);
@@ -200,7 +200,7 @@ public final class Constants
         public static final double       TURN_KP       = 0.005;
         public static final double       TURN_KD       = 0.0;
         public static final double       WHEEL_COF     = 1.2;
-        public static final double       ROBOT_MASS    = 60;
+        public static final double       ROBOT_MASS    = 45;
         public static final double       ROBOT_MOI     = 6.883;
         public static final ModuleConfig MODULE_CONFIG = new ModuleConfig(Drive.WHEEL_RADIUS, Drive.MAX_LINEAR_SPEED, WHEEL_COF, Drive.DRIVE_GEARBOX, Drive.DRIVE_MOTOR_REDUCTION, Drive.DRIVE_MOTOR_CURRENT_LIMIT, 1);
         public static final RobotConfig  ROBOT_CONFIG  = new RobotConfig(ROBOT_MASS, ROBOT_MOI, MODULE_CONFIG, Drive.MODULE_TRANSLATIONS);

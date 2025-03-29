@@ -44,13 +44,13 @@ public class Drive extends SubsystemBase
                     brIO = new ModuleIOHardware(3);
                     break;
 
-                case SIM:
+                /*case SIM:
                     gyroIO = new GyroIOSim(() -> _instance.getChassisSpeeds());
                     flIO = new ModuleIOSim();
                     frIO = new ModuleIOSim();
                     blIO = new ModuleIOSim();
                     brIO = new ModuleIOSim();
-                    break;
+                    break;*/
 
                 default:
                     gyroIO = new GyroIO() {};

@@ -31,13 +31,49 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 1.0
           }
         },
         {
           "type": "named",
           "data": {
             "name": "Output"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Output"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Intake"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left Intake"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 4.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Stow"
           }
         }
       ]
